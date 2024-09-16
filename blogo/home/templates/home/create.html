@@ -1,0 +1,12 @@
+{% extends 'home/layout.html' %}
+
+{% block title %}Create New Blog{% endblock %}
+
+{% block body %}
+<h1>Create New Blog</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+{% endblock %}

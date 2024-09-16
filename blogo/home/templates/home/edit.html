@@ -1,0 +1,12 @@
+{% extends 'home/layout.html' %}
+
+{% block title %}Edit Blog{% endblock %}
+
+{% block body %}
+<h1>Edit Blog</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+</form>
+{% endblock %}

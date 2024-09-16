@@ -1,0 +1,10 @@
+{% extends 'home/layout.html' %}
+
+{% block title %}{{ blog.title }}{% endblock %}
+
+{% block body %}
+<h1>{{ blog.title }}</h1>
+<p>{{ blog.content }}</p>
+<a href="{% url 'edit_blog' blog.id %}">Edit</a>
+<a href="{% url 'delete_blog' blog.id %}">Delete</a>
+{% endblock %}

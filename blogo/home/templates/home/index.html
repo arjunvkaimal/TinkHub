@@ -1,0 +1,17 @@
+{% extends 'home/layout.html' %}
+
+{% block title %}Blog List{% endblock %}
+
+{% block body %}
+<h1>Blog List</h1>
+<a href="{% url 'new_blog' %}" class="button button-create">Create New Blog</a>
+<ul>
+    {% for blog in blogs %}
+    <li>
+        <a href="{% url 'view_blog' blog.id %}"class="button button-view">{{ blog.title }}</a>
+        <a href="{% url 'edit_blog' blog.id %}" class="button button-edit">Edit</a>
+        <a href="{% url 'delete_blog' blog.id %}" class="button button-delete">Delete</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
