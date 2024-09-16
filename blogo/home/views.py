@@ -3,14 +3,27 @@ from .models import Blog
 from django.shortcuts import redirect
 from .forms import BlogForm
 from django.shortcuts import get_object_or_404
+from .models import Blog
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  
+            return redirect('index') 
+    else:
+        form = UserCreationForm()
+    return render(request, 'home/signup.html', {'form': form})
 
 
+@login_required
 def index(request):
-    blogs = Blog.objects.all()
-    return render(request, "home/index.html", {
-        "blogs": blogs
-    })
-
+    blogs = Blog.objects.filter(author=request.user)  
+    return render(request, 'home/index.html', {'blogs': blogs})
 
 
 def new_blog(request):
