@@ -33,7 +33,7 @@ def new_blog(request):
         form = BlogForm(request.POST)
         if form.is_valid():
             blog = form.save(commit=False)
-            blog.author = request.user  # Associate the blog with the logged-in user
+            blog.author = request.user  
             blog.save()
             return redirect('index')
     else:
