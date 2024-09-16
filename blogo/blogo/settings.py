@@ -4,6 +4,7 @@ Django settings for blogo project.
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -48,7 +49,7 @@ ROOT_URLCONF = 'blogo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -63,6 +64,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blogo.wsgi.application'
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'  
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
